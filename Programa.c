@@ -5,11 +5,33 @@
 
 int main()
 {
-	FILE *archivo;
+	FILE *leer, *escribir;
+	char cadena[80];
 
-	archivo = fopen("archivo.txt", "w");
+	leer = fopen("Programa.c", "r");
+	if( leer == NULL )
+	{
+		printf("Error: El archivo no se encontro. \n");
+		pausa;
+		return 1;
+	}
+	escribir = fopen("Copia de Programa.c", "w");
+	if( escribir == NULL )
+	{
+		printf("Error: El archivo no se encontro. \n");
+		pausa;
+		return 1;
+	}
+	//  0 = false, cualquier otra cosa = true 
+	while( !feof(leer) )
+	{
+		fgets(cadena,80,leer);
+		printf("%s", cadena);
+		fprintf(escribir,cadena);
+	}
 
-	fclose(archivo);
+	fclose(leer);
+	fclose(escribir);
 
 	pausa;
 	return 0;
