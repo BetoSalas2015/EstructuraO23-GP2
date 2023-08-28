@@ -19,7 +19,7 @@ int main()
 	do {
 		gets(cadena);
 		fprintf(salida, "%s\n", cadena);
-	} while( strcmp(cadena, "") )
+	} while( strcmp(cadena, "") );
 
 	fclose(salida);
 
