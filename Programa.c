@@ -6,22 +6,35 @@
 
 int main()
 {
-	FILE *salida;
-	char cadena[100];
+	FILE *archivo;
+	char nombre[30];
+	char password[30];
+	char car; 
+	int pos = 0;
 
-	salida = fopen("archivo.txt","w");
-	if( salida == NULL)
-	{
-		printf("Error no se pudo crear el archivo");
-		pausa;
-		return 1;
-	}
+	printf("Usuario: ");
+	gets(nombre);
+	printf("password: ");
+	
 	do {
-		gets(cadena);
-		fprintf(salida, "%s\n", cadena);
-	} while( strcmp(cadena, "") )
+		car = getch();
+		if(car == 8)
+			pos--;
+		else
+		{
+			password[pos] = car;
+			pos++;
+			putchar('*');
+		}
+	} while( car != 13);
+	putchar('\n');
 
-	fclose(salida);
+	archivo = fopen("pwd.dat", "w");
+
+	fwrite(nombre, 30, 1, archivo);
+	fwrite(password, 30, 1, archivo);
+
+	fclose(archivo);
 
 	pausa;
 	return 0;
