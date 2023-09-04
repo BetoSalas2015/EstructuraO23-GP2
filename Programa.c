@@ -4,38 +4,31 @@
 
 #define pausa system("pause")
 
+struct nombre_persona
+{
+	char nombre[15];
+	char apellido[15];
+};
+
+struct persona 
+{ 
+	struct nombre_persona nombre;
+	int edad;
+	float altura;
+	char sexo;
+};
+
 int main()
 {
-	FILE *archivo;
-	char nombre[30];
-	char password[30];
-	char car; 
-	int pos = 0;
+	int costo;
+	struct persona miPersona;
 
-	printf("Usuario: ");
-	gets(nombre);
-	printf("password: ");
+	miPersona.edad = 25;
+ 	miPersona.altura = 1.65;
+	miPersona.sexo = 'H';
+	//strcpy(  miPersona.nombre, "Juan Perez" );
+
 	
-	do {
-		car = getch();
-		if(car == 8)
-			pos--;
-		else
-		{
-			password[pos] = car;
-			pos++;
-			putchar('*');
-		}
-	} while( car != 13);
-	putchar('\n');
-
-	archivo = fopen("pwd.dat", "w");
-
-	fwrite(nombre, 30, 1, archivo);
-	fwrite(password, 30, 1, archivo);
-
-	fclose(archivo);
-
 	pausa;
 	return 0;
 }
